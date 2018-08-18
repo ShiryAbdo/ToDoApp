@@ -7,17 +7,25 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".activities.BasActivity"
     tools:showIn="@layout/activity_bas">
-    <android.support.v7.widget.RecyclerView
+    <FrameLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/recyclerView"
-        />
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recyclerView"
+            />
+    </FrameLayout>
+
 
     <LinearLayout
-        android:background="#ffffff"
-        android:layout_width="match_parent"
+        android:id="@+id/liner"
+         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="470dp"
+        android:orientation="horizontal"
+        android:background="?android:attr/windowBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -26,11 +34,13 @@
         app:layout_constraintTop_toTopOf="parent">
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/navigation"
-            android:layout_width="match_parent"
+            android:background="@drawable/bublue_color"
+            android:layout_weight="1"
+              android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="0dp"
             android:layout_marginStart="0dp"
-            android:background="?android:attr/windowBackground"
+             app:itemIconTint="@drawable/selector"
             app:menu="@menu/navigation" />
     </LinearLayout>
 

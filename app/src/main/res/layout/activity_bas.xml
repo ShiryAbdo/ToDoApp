@@ -26,6 +26,11 @@
                 android:text="My Taskes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+            <ImageView
+                android:gravity="end"
+                app:srcCompat="@drawable/ic_settings_work_tool"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
@@ -39,6 +44,7 @@
         android:layout_gravity="bottom|center"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@drawable/ic_add"
+        app:backgroundTint="@color/colort"
         tools:ignore="VectorDrawableCompat" />
 
 </android.support.design.widget.CoordinatorLayout>

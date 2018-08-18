@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import com.eramiexample.firstkotlinapp.R
 import com.eramiexample.firstkotlinapp.utilites.Tasks
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.itm_task_row.view.*
 import java.util.*
 
@@ -33,7 +34,8 @@ class  TaskAdaptor (val listTasks:List<Tasks> ,val Lisener:(Tasks)->Unit): Recyc
         fun bind(task: Tasks, listener: (Tasks)->Unit)= with(itemView) {
             task_name.text=task.title
             task_discription.text=task.descriptionTask
-            imageType.setImageResource(task.imageView)
+            Picasso.with(context).load(task.imageView).into(imageType);
+//            imageType.setImageResource(task.imageView)
             val rnd = Random()
             val color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256))
             colortext.setBackgroundColor(color)
