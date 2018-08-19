@@ -49,6 +49,17 @@ class  DbManager {
         }
 
 
+//        fun getdata(): ByteArray {
+//            val db = writableDatabase
+//            val res = db.rawQuery("select * from " + TABLE_NAME, null)
+//
+//            if (res.moveToFirst()) {
+//                do {
+//                    return res.getBlob(0)
+//                } while (res.moveToNext())
+//            }
+//            return byteArrayOf()
+//        }
 
 
 
@@ -78,6 +89,8 @@ class  DbManager {
         val count=sqlDB!!.update(dbTable,values,selection,selectionargs)
         return count
     }
+
+
 
  }
 

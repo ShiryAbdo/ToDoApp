@@ -1,32 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
-    android:layout_height="42dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
     android:paddingStart="10dp"
+     android:paddingTop="10dp"
     android:layout_margin="32dp"
     android:paddingLeft="10dp">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:visibility="gone"
+            android:background="@drawable/tags_rounded_corners"
+            android:id="@+id/imgDropDownMenuIcon"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:clickable="false"
+            android:layout_width="10pt"
+            android:layout_height="10pt"
+            android:layout_margin="@dimen/fab_margin"
+            />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/imgDropDownMenu"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:clickable="false"
+            android:visibility="visible"
+            android:layout_width="5pt"
+            android:layout_height="5pt"
+            android:layout_margin="@dimen/fab_margin"
+             />
 
-    <ImageView
-        android:id="@+id/imgDropDownMenuIcon"
-        android:layout_width="10pt"
-        android:layout_height="10pt"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_menu_gallery" />
 
-    <TextView
-        android:id="@+id/txtDropDownLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="6dp"
-        android:layout_marginStart="6dp"
-        android:gravity="center_horizontal"
-        android:text="Residential"
-        android:textColor="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/imgDropDownMenuIcon"
-        app:layout_constraintTop_toTopOf="parent" />
+        <!--<com.mikhaellopez.circularimageview.CircularImageView-->
+            <!--android:id="@+id/yourCircularImageView"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:src="@color/gray"-->
+            <!--app:civ_border_color="#EEEEEE"-->
+            <!--app:civ_border_width="4dp"-->
+            <!--app:civ_shadow="true"-->
+            <!--app:civ_shadow_radius="10"-->
+            <!--app:civ_shadow_color="#8BC34A"/>-->
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/txtDropDownLabel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="6dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textAlignment="textStart"
+            android:layout_marginStart="6dp"
+             android:text="Residential"
+            android:textColor="@android:color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlCompat" />
+
+    </LinearLayout>
+
+
+
+
+
+
+
 
 </android.support.constraint.ConstraintLayout>
