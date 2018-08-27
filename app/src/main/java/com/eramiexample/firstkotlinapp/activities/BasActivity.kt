@@ -1,6 +1,7 @@
 package com.eramiexample.firstkotlinapp.activities
 
 import android.content.ContentValues
+import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.BitmapDrawable
@@ -34,17 +35,15 @@ import android.opengl.ETC1.getWidth
 
 
 class BasActivity : AppCompatActivity() {
-    private var id =0L
     private val listItemsTxt = ArrayList<TagsData>( )
     private var SpinnerChose :String?=null
-    private var cancel = false
     private var imageView:String?=null
-    private val arrayListTasks= ArrayList<Tasks>()
 
-    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+    private val arrayListTasks= ArrayList<Tasks>()
+     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
-
+                fragmentManager.popBackStack()
                  return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_dashboard -> {
@@ -80,56 +79,17 @@ class BasActivity : AppCompatActivity() {
 
 
 
+
         fab.setOnClickListener { view ->
-            val mDialoogeView= LayoutInflater.from(this).inflate(R.layout.add_task_row,null)
-            val mBuilder=AlertDialog.Builder(this).setView(mDialoogeView).setTitle(getString(R.string.Add_new_Task))
-            val  mAlertDialog= mBuilder.show()
-            var spinnerAdapter: CustomDropDownAdapter = CustomDropDownAdapter(this@BasActivity!!, listItemsTxt)
-            var spinner: Spinner = mDialoogeView.findViewById(R.id.spinner) as Spinner
-            spinner?.adapter = spinnerAdapter
-            spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-
-                override fun onItemSelected(arg0: AdapterView<*>, arg1: View, position: Int, id: Long) {
-                    SpinnerChose =listItemsTxt.get(position).name
-                    imageView=listItemsTxt.get(position).Color
-
-                    Toast.makeText(this@BasActivity,"on select",Toast.LENGTH_LONG).show()
-
-                }
-                override fun onNothingSelected(arg0: AdapterView<*>) =
-                        Toast.makeText(this@BasActivity,getString(R.string.chose_category),Toast.LENGTH_LONG).show()
+            showDialoge()
 
 
-            }
-            mDialoogeView.addTask.setOnClickListener(){
-
-                var dbManager = DbManager(this)
-                var values= ContentValues()
-                values.put("Title",mDialoogeView.taskName.text.toString())
-                values.put("Description", mDialoogeView.task_discription.text.toString())
-                values.put("imageView", imageView)
-                values.put("TAG",SpinnerChose)
-                values.put("date","@{DateUtils.toSimpleString(journey.date)}")
-
-                var id=  dbManager.Insert(values)
-                if(id>0){
-                    Toast.makeText(this@BasActivity,getString(R.string.task_is_add),Toast.LENGTH_LONG).show()
-                }else{
-                    Toast.makeText(this@BasActivity,"not is add",Toast.LENGTH_LONG).show()
-
-                }
-                LoadQuery("%")
-                mAlertDialog.dismiss()
-
-            }
 
 
         }
     }
 
-    fun LoadQuery(title:String){
-
-
+    private fun LoadQuery(title:String){
 
         var dbManager=DbManager(this)
         val projections= arrayOf("ID","Title","Description","TAG","imageView","date")
@@ -151,9 +111,60 @@ class BasActivity : AppCompatActivity() {
             }while (cursor.moveToNext())
         }
 
-                 recyclerView.adapter= TaskAdaptor(arrayListTasks){
+                 recyclerView.adapter= TaskAdaptor(this@BasActivity,arrayListTasks){
+//                     Toast.makeText(this@BasActivity,it.title,Toast.LENGTH_LONG).show()
 
                 }
+
+
+    }
+
+    private  fun showDialoge (){
+        val mDialoogeView= LayoutInflater.from(this).inflate(R.layout.add_task_row,null)
+        val mBuilder=AlertDialog.Builder(this).setView(mDialoogeView).setTitle(getString(R.string.Add_new_Task))
+        val  mAlertDialog= mBuilder.show()
+        var spinnerAdapter: CustomDropDownAdapter = CustomDropDownAdapter(this@BasActivity!!, listItemsTxt)
+        var spinner: Spinner = mDialoogeView.findViewById(R.id.spinner) as Spinner
+        spinner?.adapter = spinnerAdapter
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+
+            override fun onItemSelected(arg0: AdapterView<*>, arg1: View, position: Int, id: Long) {
+                SpinnerChose =listItemsTxt.get(position).name
+                imageView=listItemsTxt.get(position).Color
+
+                Toast.makeText(this@BasActivity,"on select",Toast.LENGTH_LONG).show()
+
+            }
+            override fun onNothingSelected(arg0: AdapterView<*>) =
+                    Toast.makeText(this@BasActivity,getString(R.string.chose_category),Toast.LENGTH_LONG).show()
+
+
+        }
+        mDialoogeView.addTask.setOnClickListener(){
+
+            var dbManager = DbManager(this)
+            var values= ContentValues()
+            values.put("Title",mDialoogeView.taskName.text.toString())
+            values.put("Description", mDialoogeView.task_discription.text.toString())
+            values.put("imageView", imageView)
+            values.put("TAG",SpinnerChose)
+            values.put("date","@{DateUtils.toSimpleString(journey.date)}")
+
+            var id=  dbManager.Insert(values)
+            if(id>0){
+                Toast.makeText(this@BasActivity,getString(R.string.task_is_add),Toast.LENGTH_LONG).show()
+            }else{
+                Toast.makeText(this@BasActivity,"not is add",Toast.LENGTH_LONG).show()
+
+            }
+            LoadQuery("%")
+            mAlertDialog.dismiss()
+
+        }
+
+
+
+
 
 
     }

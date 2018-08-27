@@ -1,52 +1,105 @@
 package com.eramiexample.firstkotlinapp.adaptors
 
-import android.content.res.ColorStateList
+import android.content.Context
 import android.graphics.Color
-import android.net.Uri
+import android.graphics.drawable.GradientDrawable
+import android.os.Handler
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.ImageView
+import android.widget.Toast
 import com.eramiexample.firstkotlinapp.R
+import com.eramiexample.firstkotlinapp.utilites.DbManager
 import com.eramiexample.firstkotlinapp.utilites.Tasks
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.itm_task_row.view.*
-import java.net.URI
 import java.util.*
+import kotlin.collections.ArrayList
 
-class  TaskAdaptor (val listTasks:List<Tasks> ,val Lisener:(Tasks)->Unit): RecyclerView.Adapter<TaskAdaptor.ViewHolder>(){
-
-
+class  TaskAdaptor ( val contet: Context, val listTasks:ArrayList<Tasks>, val Lisener:(Tasks)->Unit): RecyclerView.Adapter<TaskAdaptor.ViewHolder>(){
+    private lateinit var mHandler: Handler
     override fun onBindViewHolder(holder:ViewHolder, position: Int) {
 
-        holder.bind(listTasks.get(position),Lisener)
-      }
+        holder.bind(listTasks,listTasks.get(position),Lisener)
 
+
+
+
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskAdaptor.ViewHolder {
         val rootView =LayoutInflater.from(parent.context).inflate(R.layout.itm_task_row, parent, false)
         return ViewHolder(rootView)
      }
-
     override fun getItemCount(): Int {
         return listTasks.size
-     }
+    }
 
-    class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
+   inner class ViewHolder (view: View) :  RecyclerView.ViewHolder(view) {
 
-        fun bind(task: Tasks, listener: (Tasks)->Unit)= with(itemView) {
+
+        fun bind(listTasks: ArrayList<Tasks> ,task: Tasks, listener: (Tasks)->Unit)= with(itemView) {
             task_name.text=task.title
             task_discription.text=task.descriptionTask
-            floatingActionButton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor( task.imageView)))
-            val rnd = Random()
+            val drawable = imgDropDownMenuIcon.getBackground() as GradientDrawable
+            drawable.setColor(Color.parseColor(task.imageView))
+             val rnd = Random()
             val color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256))
             colortext.setBackgroundColor(color)
-//            val cb1 = findViewById (R.id.CheckBox_task) as CheckBox
-            setOnClickListener { listener(task) }
 
+                setOnClickListener { listener(task) }
+            val bin = findViewById(R.id.bin)as ImageView
+            bin.setOnClickListener {
+                var dbManager= DbManager(contet)
+                val selectionArgs= arrayOf(task.id.toString())
+                dbManager.Delete("ID=?",selectionArgs)
+                layoutPosition.also { currentPosition ->
+                    listTasks.removeAt(currentPosition)
+                    notifyDataSetChanged()
+                }
+
+            }
+            val cb1 = findViewById (R.id.CheckBox_task) as CheckBox
+
+            cb1.setOnCheckedChangeListener({
+                buttonView, isChecked ->
+                if (isChecked){
+                    mHandler = Handler()
+
+                    mHandler.postDelayed({
+                        Toast.makeText(contet,"task  is done  ",Toast.LENGTH_LONG).show()
+
+                        var dbManager= DbManager(contet)
+                        val selectionArgs= arrayOf(task.id.toString())
+                        dbManager.Delete("ID=?",selectionArgs)
+                        layoutPosition.also { currentPosition ->
+                            listTasks.removeAt(currentPosition)
+                            notifyDataSetChanged()
+                        }
+
+                    }, 2000)
+
+
+                }else{
+
+
+                 }
+            })
 
         }
 
+
+
+
     }
 
+
+
+
+
+
 }
+
+
+

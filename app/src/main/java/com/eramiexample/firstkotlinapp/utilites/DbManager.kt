@@ -78,6 +78,13 @@ class  DbManager {
         val cursor=qb.query(sqlDB,projection,selection,selectionArgs,null,null,sorOrder)
         return cursor
     }
+    fun QuerCatoager (projection:Array<String>,selection:String,selectionArgs:Array<String>,sorOrder:String): Cursor{
+        val qb= SQLiteQueryBuilder()
+        qb.tables=dbTable
+        val cursor=qb.query(sqlDB,projection,selection,selectionArgs,null,null,sorOrder)
+        return cursor
+
+    }
     fun Delete(selection:String,selectionArgs:Array<String>):Int{
 
         val count=sqlDB!!.delete(dbTable,selection,selectionArgs)

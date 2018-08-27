@@ -36,9 +36,6 @@ class CustomDropDownAdapter(val context: Context, var listItemsTxt: ArrayList<Ta
             view = convertView
             vh = view.tag as ItemRowHolder
         }
-
-        // setting adapter item height programatically.
-
         val params = view.layoutParams
         params.height = 60
         view.layoutParams = params
@@ -47,9 +44,6 @@ class CustomDropDownAdapter(val context: Context, var listItemsTxt: ArrayList<Ta
         val drawable = vh.imgDropDownMenuIcon.getBackground() as GradientDrawable
         drawable.setColor(Color.parseColor(listItemsTxt.get(position).Color))
 
-      vh.imgDropDownMenu.setBackgroundColor(Color.parseColor("#8b3a14"))
-      vh.imgDropDownMenu.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(listItemsTxt.get(position).Color)))
-        vh.imgDropDownMenu.setOnClickListener { Toast.makeText(context,"ajda",Toast.LENGTH_LONG).show() }
 
          return view
     }
@@ -74,31 +68,15 @@ class CustomDropDownAdapter(val context: Context, var listItemsTxt: ArrayList<Ta
 
         val label: TextView
         val imgDropDownMenuIcon:ImageView
-        val imgDropDownMenu:FloatingActionButton
 
 
 
         init {
             this.label = row?.findViewById(R.id.txtDropDownLabel) as TextView
             imgDropDownMenuIcon = row.findViewById(R.id.imgDropDownMenuIcon) as ImageView
-              this.imgDropDownMenu= row.findViewById(R.id.imgDropDownMenu) as FloatingActionButton
-//            imgDropDownMenuIcon.isEnabled=false
-            val drawable = row.imgDropDownMenuIcon.getBackground() as GradientDrawable
-                 drawable.setColor(Color.RED)
-//                 drawable.setColor(Color.BLUE)
-//            val circularImageView = row.findViewById(R.id.yourCircularImageView) as CircularImageView
-//// Set Border
-//             circularImageView.setBorderWidth(10f)
-//// Add Shadow with default param
-//            circularImageView.addShadow()
-//// or with custom param
-//            circularImageView.setShadowRadius(15f)
-//            circularImageView.setShadowColor(Color.RED)
-//            circularImageView.setBackgroundColor(Color.RED)
-//            circularImageView.setShadowGravity(CircularImageView.ShadowGravity.CENTER)
 
-//            this.imgDropDownMenuIcon= row.findViewById(R.id.imgDropDownMenuIcon) as FloatingActionButton
-//            imgDropDownMenuIcon.isEnabled=false
-        }
+
+
+         }
     }
 }

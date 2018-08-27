@@ -13,8 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
-            android:visibility="gone"
-            android:background="@drawable/tags_rounded_corners"
+             android:background="@drawable/tags_rounded_corners"
             android:id="@+id/imgDropDownMenuIcon"
             android:layout_gravity="center"
             android:gravity="center"
@@ -23,28 +22,7 @@
             android:layout_height="10pt"
             android:layout_margin="@dimen/fab_margin"
             />
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/imgDropDownMenu"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:clickable="false"
-            android:visibility="visible"
-            android:layout_width="5pt"
-            android:layout_height="5pt"
-            android:layout_margin="@dimen/fab_margin"
-             />
 
-
-        <!--<com.mikhaellopez.circularimageview.CircularImageView-->
-            <!--android:id="@+id/yourCircularImageView"-->
-            <!--android:layout_width="50dp"-->
-            <!--android:layout_height="50dp"-->
-            <!--android:src="@color/gray"-->
-            <!--app:civ_border_color="#EEEEEE"-->
-            <!--app:civ_border_width="4dp"-->
-            <!--app:civ_shadow="true"-->
-            <!--app:civ_shadow_radius="10"-->
-            <!--app:civ_shadow_color="#8BC34A"/>-->
         <TextView
             android:layout_weight="1"
             android:id="@+id/txtDropDownLabel"
