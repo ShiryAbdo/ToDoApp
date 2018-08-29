@@ -37,4 +37,5 @@
     <string name="task_is_add">task is add</string>
     <string name="chose_category">You have to chose category</string>
     <string name="title_activity_section_list">SectionListActivity</string>
+    <string name="title_activity_task_detalis">TaskDetalisActivity</string>
 </resources>

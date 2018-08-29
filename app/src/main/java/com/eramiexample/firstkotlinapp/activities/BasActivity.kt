@@ -69,7 +69,7 @@ class BasActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         setTitle("")
-        listItemsTxt.add(TagsData("Select Catogiry","#ffffff"))
+        listItemsTxt.add(TagsData("Select Category","#288a8c"))
         listItemsTxt.add(TagsData("Home","#7b045d"))
         listItemsTxt.add(TagsData("Work","#25833a"))
         listItemsTxt.add(TagsData("Meeting","#0d1066"))
@@ -141,24 +141,30 @@ class BasActivity : AppCompatActivity() {
 
         }
         mDialoogeView.addTask.setOnClickListener(){
+           if(!SpinnerChose.equals("Select Category")){
+               var dbManager = DbManager(this)
+               var values= ContentValues()
+               values.put("Title",mDialoogeView.taskName.text.toString())
+               values.put("Description", mDialoogeView.task_discription.text.toString())
+               values.put("imageView", imageView)
+               values.put("TAG",SpinnerChose)
+               values.put("date","@{DateUtils.toSimpleString(journey.date)}")
 
-            var dbManager = DbManager(this)
-            var values= ContentValues()
-            values.put("Title",mDialoogeView.taskName.text.toString())
-            values.put("Description", mDialoogeView.task_discription.text.toString())
-            values.put("imageView", imageView)
-            values.put("TAG",SpinnerChose)
-            values.put("date","@{DateUtils.toSimpleString(journey.date)}")
+               var id=  dbManager.Insert(values)
+               if(id>0){
+                   Toast.makeText(this@BasActivity,getString(R.string.task_is_add),Toast.LENGTH_LONG).show()
+               }else{
+                   Toast.makeText(this@BasActivity,"not is add",Toast.LENGTH_LONG).show()
 
-            var id=  dbManager.Insert(values)
-            if(id>0){
-                Toast.makeText(this@BasActivity,getString(R.string.task_is_add),Toast.LENGTH_LONG).show()
-            }else{
-                Toast.makeText(this@BasActivity,"not is add",Toast.LENGTH_LONG).show()
+               }
+               LoadQuery("%")
+               mAlertDialog.dismiss()
+           }else{
+               Toast.makeText(this@BasActivity,"You  must select Select Category",Toast.LENGTH_LONG).show()
 
-            }
-            LoadQuery("%")
-            mAlertDialog.dismiss()
+
+           }
+
 
         }
 

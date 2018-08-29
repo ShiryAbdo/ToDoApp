@@ -1,6 +1,7 @@
 package com.eramiexample.firstkotlinapp.adaptors
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Handler
@@ -10,8 +11,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.Toast
 import com.eramiexample.firstkotlinapp.R
+import com.eramiexample.firstkotlinapp.activities.NavActivity
+import com.eramiexample.firstkotlinapp.activities.TaskDetalisActivity
 import com.eramiexample.firstkotlinapp.utilites.DbManager
 import com.eramiexample.firstkotlinapp.utilites.Tasks
 import kotlinx.android.synthetic.main.itm_task_row.view.*
@@ -29,7 +33,7 @@ class  TaskAdaptor ( val contet: Context, val listTasks:ArrayList<Tasks>, val Li
 
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskAdaptor.ViewHolder {
-        val rootView =LayoutInflater.from(parent.context).inflate(R.layout.itm_task_row, parent, false)
+        val rootView   =LayoutInflater.from(parent.context).inflate(R.layout.itm_task_row, parent, false)
         return ViewHolder(rootView)
      }
     override fun getItemCount(): Int {
@@ -40,6 +44,11 @@ class  TaskAdaptor ( val contet: Context, val listTasks:ArrayList<Tasks>, val Li
 
 
         fun bind(listTasks: ArrayList<Tasks> ,task: Tasks, listener: (Tasks)->Unit)= with(itemView) {
+            cvLiner.setOnClickListener {
+                val intent = Intent(contet, TaskDetalisActivity::class.java)
+                intent.putExtra("task", task)
+                contet.startActivity(intent)
+             }
             task_name.text=task.title
             task_discription.text=task.descriptionTask
             val drawable = imgDropDownMenuIcon.getBackground() as GradientDrawable
@@ -65,20 +74,23 @@ class  TaskAdaptor ( val contet: Context, val listTasks:ArrayList<Tasks>, val Li
             cb1.setOnCheckedChangeListener({
                 buttonView, isChecked ->
                 if (isChecked){
-                    mHandler = Handler()
-
-                    mHandler.postDelayed({
-                        Toast.makeText(contet,"task  is done  ",Toast.LENGTH_LONG).show()
+//                    mHandler = Handler()
+//
+//                    mHandler.postDelayed({
 
                         var dbManager= DbManager(contet)
                         val selectionArgs= arrayOf(task.id.toString())
                         dbManager.Delete("ID=?",selectionArgs)
                         layoutPosition.also { currentPosition ->
-                            listTasks.removeAt(currentPosition)
-                            notifyDataSetChanged()
-                        }
 
-                    }, 2000)
+                            if(currentPosition<=listTasks.size){
+                                listTasks.removeAt(currentPosition)
+                                notifyDataSetChanged()
+                            }
+
+                        }
+//
+//                    }, 2000)
 
 
                 }else{
