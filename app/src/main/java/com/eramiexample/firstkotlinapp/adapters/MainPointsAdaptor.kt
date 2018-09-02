@@ -1,7 +1,6 @@
-package com.eramiexample.firstkotlinapp.adaptors
+package com.eramiexample.firstkotlinapp.adapters
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
@@ -11,9 +10,8 @@ import android.view.View
 import android.view.ViewGroup
  import com.amulyakhare.textdrawable.TextDrawable
 import com.eramiexample.firstkotlinapp.R
-import com.eramiexample.firstkotlinapp.activities.NavActivity
 import com.eramiexample.firstkotlinapp.activities.SectionsActivity
-import com.eramiexample.firstkotlinapp.utilites.TagsData
+import com.eramiexample.firstkotlinapp.model.TagsData
 import java.util.*
 import com.mikhaellopez.circularimageview.CircularImageView
  import kotlinx.android.synthetic.main.itmw_main_point.view.*
