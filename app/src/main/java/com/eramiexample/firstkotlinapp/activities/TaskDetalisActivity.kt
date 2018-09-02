@@ -5,7 +5,7 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.eramiexample.firstkotlinapp.R
-import com.eramiexample.firstkotlinapp.utilites.Tasks
+import com.eramiexample.firstkotlinapp.model.Tasks
 import kotlinx.android.synthetic.main.activity_task_detalis2.*
 import kotlinx.android.synthetic.main.content_task_detalis.*
 

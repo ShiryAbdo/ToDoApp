@@ -1,4 +1,4 @@
-package com.eramiexample.firstkotlinapp.utilites
+package com.eramiexample.firstkotlinapp.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

@@ -1,4 +1,4 @@
-package com.eramiexample.firstkotlinapp.adaptors
+package com.eramiexample.firstkotlinapp.adapters
 
 import android.content.Context
 import android.content.Intent
@@ -11,20 +11,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.Toast
 import com.eramiexample.firstkotlinapp.R
-import com.eramiexample.firstkotlinapp.activities.NavActivity
 import com.eramiexample.firstkotlinapp.activities.TaskDetalisActivity
-import com.eramiexample.firstkotlinapp.utilites.DbManager
-import com.eramiexample.firstkotlinapp.utilites.Tasks
+import com.eramiexample.firstkotlinapp.sql.DbManager
+import com.eramiexample.firstkotlinapp.model.Tasks
 import kotlinx.android.synthetic.main.itm_task_row.view.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-class  TaskAdaptor ( val contet: Context, val listTasks:ArrayList<Tasks>, val Lisener:(Tasks)->Unit): RecyclerView.Adapter<TaskAdaptor.ViewHolder>(){
+class  TaskAdaptor (val contet: Context, val listTasks:ArrayList<Tasks>, val Lisener:(Tasks)->Unit): RecyclerView.Adapter<TaskAdaptor.ViewHolder>(){
     private lateinit var mHandler: Handler
-    override fun onBindViewHolder(holder:ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         holder.bind(listTasks,listTasks.get(position),Lisener)
 
@@ -32,7 +29,7 @@ class  TaskAdaptor ( val contet: Context, val listTasks:ArrayList<Tasks>, val Li
 
 
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskAdaptor.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val rootView   =LayoutInflater.from(parent.context).inflate(R.layout.itm_task_row, parent, false)
         return ViewHolder(rootView)
      }
@@ -43,7 +40,7 @@ class  TaskAdaptor ( val contet: Context, val listTasks:ArrayList<Tasks>, val Li
    inner class ViewHolder (view: View) :  RecyclerView.ViewHolder(view) {
 
 
-        fun bind(listTasks: ArrayList<Tasks> ,task: Tasks, listener: (Tasks)->Unit)= with(itemView) {
+        fun bind(listTasks: ArrayList<Tasks>, task: Tasks, listener: (Tasks)->Unit)= with(itemView) {
             cvLiner.setOnClickListener {
                 val intent = Intent(contet, TaskDetalisActivity::class.java)
                 intent.putExtra("task", task)
