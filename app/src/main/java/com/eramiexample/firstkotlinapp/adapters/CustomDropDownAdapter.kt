@@ -1,7 +1,6 @@
-package com.eramiexample.firstkotlinapp.adaptors
+package com.eramiexample.firstkotlinapp.adapters
 
 import android.content.Context
-import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Build
 import android.support.annotation.RequiresApi
@@ -12,11 +11,8 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.eramiexample.firstkotlinapp.R
-import com.eramiexample.firstkotlinapp.utilites.TagsData
+import com.eramiexample.firstkotlinapp.model.TagsData
 import android.graphics.drawable.GradientDrawable
-import android.support.design.widget.FloatingActionButton
-import android.widget.Toast
-import kotlinx.android.synthetic.main.view_drop_down_menu.view.*
 
 
 class CustomDropDownAdapter(val context: Context, var listItemsTxt: ArrayList<TagsData>) : BaseAdapter() {

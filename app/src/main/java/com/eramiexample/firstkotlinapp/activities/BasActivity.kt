@@ -11,12 +11,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
 import com.eramiexample.firstkotlinapp.R
- import com.eramiexample.firstkotlinapp.adaptors.CustomDropDownAdapter
-import com.eramiexample.firstkotlinapp.adaptors.TaskAdaptor
+ import com.eramiexample.firstkotlinapp.adapters.CustomDropDownAdapter
+import com.eramiexample.firstkotlinapp.adapters.TaskAdaptor
 import com.eramiexample.firstkotlinapp.fragments.PartsFragment
-import com.eramiexample.firstkotlinapp.utilites.DbManager
-import com.eramiexample.firstkotlinapp.utilites.TagsData
-import com.eramiexample.firstkotlinapp.utilites.Tasks
+import com.eramiexample.firstkotlinapp.sql.DbManager
+import com.eramiexample.firstkotlinapp.model.TagsData
+import com.eramiexample.firstkotlinapp.model.Tasks
 
 import kotlinx.android.synthetic.main.activity_bas.*
 import kotlinx.android.synthetic.main.add_task_row.view.*
@@ -26,11 +26,7 @@ import android.util.Log
 import android.widget.Toast
 import com.flask.colorpicker.OnColorSelectedListener
 import com.flask.colorpicker.ColorPickerView
-import kotlinx.android.synthetic.main.add_sction_row.*
 import kotlinx.android.synthetic.main.add_sction_row.view.*
-import android.database.sqlite.SQLiteDatabase
-
-
 
 
 class BasActivity : AppCompatActivity() {
@@ -113,7 +109,7 @@ class BasActivity : AppCompatActivity() {
             do {
                 val tag_name = cursor.getString(cursor.getColumnIndex("tag_name"))
                 val tag_color = cursor.getString(cursor.getColumnIndex("tag_color"))
-                val getTaTagsDatask = TagsData(tag_name,tag_color)
+                val getTaTagsDatask = TagsData(tag_name, tag_color)
                 listItemsTxt.add(getTaTagsDatask)
 
 
