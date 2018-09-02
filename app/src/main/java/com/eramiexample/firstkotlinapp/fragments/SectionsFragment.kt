@@ -9,9 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.eramiexample.firstkotlinapp.R
-import com.eramiexample.firstkotlinapp.adaptors.TaskAdaptor
-import com.eramiexample.firstkotlinapp.utilites.DbManager
-import com.eramiexample.firstkotlinapp.utilites.Tasks
+import com.eramiexample.firstkotlinapp.adapters.TaskAdaptor
+import com.eramiexample.firstkotlinapp.sql.DbManager
+import com.eramiexample.firstkotlinapp.model.Tasks
 import kotlinx.android.synthetic.main.content_bas.*
 
 
@@ -43,13 +43,13 @@ class SectionsFragment : Fragment() {
                 val TAG=cursor.getString(cursor.getColumnIndex("TAG"))
                 val imageView=cursor.getString(cursor.getColumnIndex("imageView"))
                 val date=cursor.getString(cursor.getColumnIndex("date"))
-                val getTask= Tasks(ID, Title, Description, TAG,imageView, date)
+                val getTask= Tasks(ID, Title, Description, TAG, imageView, date)
                 arrayListTasks.add(getTask)
 
             }while (cursor.moveToNext())
         }
 
-        recyclerView.adapter= TaskAdaptor(this.activity!!,arrayListTasks){
+        recyclerView.adapter= TaskAdaptor(this.activity!!, arrayListTasks) {
             //                     Toast.makeText(this@BasActivity,it.title,Toast.LENGTH_LONG).show()
 
         }

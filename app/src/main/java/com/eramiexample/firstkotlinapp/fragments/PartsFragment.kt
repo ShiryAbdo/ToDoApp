@@ -10,9 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.eramiexample.firstkotlinapp.R
-import com.eramiexample.firstkotlinapp.adaptors.MainPointsAdaptor
-import com.eramiexample.firstkotlinapp.utilites.DbManager
-import com.eramiexample.firstkotlinapp.utilites.TagsData
+import com.eramiexample.firstkotlinapp.adapters.MainPointsAdaptor
+import com.eramiexample.firstkotlinapp.sql.DbManager
+import com.eramiexample.firstkotlinapp.model.TagsData
 
 
 class PartsFragment : Fragment() {
@@ -50,7 +50,7 @@ class PartsFragment : Fragment() {
 //                val getTask= Tasks(ID, Title, Description, TAG,imageView, date)
                 var name:String =""
 
-                    val getTask= TagsData(TAG,imageView)
+                    val getTask= TagsData(TAG, imageView)
                 if(!arrayListTasks.contains(getTask)){
                     arrayListTasks.add(getTask)
 
@@ -60,7 +60,7 @@ class PartsFragment : Fragment() {
 
             }while (cursor.moveToNext())
         }
-        recyclerViewp!!.adapter= MainPointsAdaptor(activity,arrayListTasks){
+        recyclerViewp!!.adapter= MainPointsAdaptor(activity, arrayListTasks) {
             //Toast.makeText(this@BasActivity,it.title,Toast.LENGTH_LONG).show()
 
         }

@@ -11,9 +11,9 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.widget.Toast
 import com.eramiexample.firstkotlinapp.R
-import com.eramiexample.firstkotlinapp.adaptors.TaskAdaptor
-import com.eramiexample.firstkotlinapp.utilites.DbManager
-import com.eramiexample.firstkotlinapp.utilites.Tasks
+import com.eramiexample.firstkotlinapp.adapters.TaskAdaptor
+import com.eramiexample.firstkotlinapp.sql.DbManager
+import com.eramiexample.firstkotlinapp.model.Tasks
 import kotlinx.android.synthetic.main.activity_sections.*
 import kotlinx.android.synthetic.main.add_task_row_sections.view.*
 import kotlinx.android.synthetic.main.content_bas.*
@@ -62,13 +62,13 @@ class SectionsActivity : AppCompatActivity() {
                 val TAG=cursor.getString(cursor.getColumnIndex("TAG"))
                 val imageView=cursor.getString(cursor.getColumnIndex("imageView"))
                 val date=cursor.getString(cursor.getColumnIndex("date"))
-                val getTask= Tasks(ID, Title, Description, TAG,imageView, date)
+                val getTask= Tasks(ID, Title, Description, TAG, imageView, date)
                 arrayListTasks.add(getTask)
 
             }while (cursor.moveToNext())
         }
 
-        recyclerView.adapter= TaskAdaptor(this@SectionsActivity,arrayListTasks){
+        recyclerView.adapter= TaskAdaptor(this@SectionsActivity, arrayListTasks) {
 
         }
 
