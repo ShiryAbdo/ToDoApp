@@ -1,6 +1,8 @@
 package com.eramiexample.firstkotlinapp.adaptors
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
  import android.support.v7.widget.RecyclerView
@@ -9,13 +11,15 @@ import android.view.View
 import android.view.ViewGroup
  import com.amulyakhare.textdrawable.TextDrawable
 import com.eramiexample.firstkotlinapp.R
+import com.eramiexample.firstkotlinapp.activities.NavActivity
+import com.eramiexample.firstkotlinapp.activities.SectionsActivity
 import com.eramiexample.firstkotlinapp.utilites.TagsData
 import java.util.*
 import com.mikhaellopez.circularimageview.CircularImageView
  import kotlinx.android.synthetic.main.itmw_main_point.view.*
 
 
-class  MainPointsAdaptor (val contx:Context, val listTasks:ArrayList<TagsData>, val Lisener:(TagsData)->Unit): RecyclerView.Adapter<MainPointsAdaptor.viewHolder>(){
+class  MainPointsAdaptor (val contx:Activity, val listTasks:ArrayList<TagsData>, val Lisener:(TagsData)->Unit): RecyclerView.Adapter<MainPointsAdaptor.viewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder {
         val rootView = LayoutInflater.from(parent.context).inflate(R.layout.itmw_main_point, parent, false)
         return viewHolder(rootView)
@@ -38,6 +42,13 @@ class  MainPointsAdaptor (val contx:Context, val listTasks:ArrayList<TagsData>, 
         fun bind(listTasks: ArrayList<TagsData>, task: TagsData, listener: (TagsData)->Unit)= with(itemView) {
             nameSection.text= task.name
             val circularImageView = findViewById(R.id.yourCircularImageView) as CircularImageView
+            mainContainer.setOnClickListener {
+                val intent = Intent(contx, SectionsActivity::class.java)
+                intent.putExtra("Tag",task.name)
+                intent.putExtra("ColorTage" ,task.Color)
+                contx.startActivity(intent)
+
+            }
             val Easyy = TextDrawable.builder()
                     .beginConfig()
                     .textColor(Color.BLACK)

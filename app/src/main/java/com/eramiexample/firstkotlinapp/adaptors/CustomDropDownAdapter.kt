@@ -45,6 +45,7 @@ class CustomDropDownAdapter(val context: Context, var listItemsTxt: ArrayList<Ta
         drawable.setColor(Color.parseColor(listItemsTxt.get(position).Color))
 
 
+
          return view
     }
 

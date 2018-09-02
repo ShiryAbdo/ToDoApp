@@ -6,7 +6,8 @@ buildscript {
         google()
         jcenter()
         maven {
-            url 'http://dl.bintray.com/amulyakhare/maven'
+//            url 'http://dl.bintray.com/amulyakhare/maven',
+            url "https://jitpack.io"
         }
     }
     dependencies {
@@ -23,7 +24,8 @@ allprojects {
         google()
         jcenter()
         maven {
-            url 'http://dl.bintray.com/amulyakhare/maven'
+//            url 'http://dl.bintray.com/amulyakhare/maven',
+            url "https://jitpack.io"
         }
     }
 }

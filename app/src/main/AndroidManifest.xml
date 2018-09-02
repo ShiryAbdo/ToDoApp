@@ -54,6 +54,10 @@
             android:name=".activities.TaskDetalisActivity"
             android:label="@string/title_activity_task_detalis"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.SectionsActivity"
+            android:label="@string/title_activity_sections"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

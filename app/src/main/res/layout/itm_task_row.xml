@@ -23,10 +23,12 @@
             >
 
             <RelativeLayout
+                android:layout_marginStart="5pt"
+                android:layout_marginTop="5pt"
+                android:layout_marginBottom="5pt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
-                >
+                android:layout_marginLeft="5pt">
 
                 <CheckBox
                     android:button="@drawable/checkbox_selector"
@@ -39,6 +41,8 @@
                     />
 
                 <TextView
+                    android:textColor="#000"
+                    android:layout_marginTop="2pt"
                     android:textStyle="bold"
                     android:text="jfdhfh"
                     android:layout_width="wrap_content"
@@ -46,7 +50,7 @@
                     android:id="@+id/task_name"
                     android:layout_toRightOf="@+id/CheckBox_task"
                     android:layout_alignParentTop="true"
-                    android:textSize="25sp"
+                    android:textSize="20sp"
                     />
 
                 <TextView
@@ -58,35 +62,38 @@
                     />
                 <LinearLayout
                     android:orientation="vertical"
-                    android:layout_marginEnd="3dp"
-                    android:gravity="center"
+                     android:gravity="center"
                     android:layout_alignParentEnd="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="3dp"
                     android:layout_alignParentRight="true">
 
+
                     <ImageView
                         android:background="@drawable/tags_rounded_corners"
                         android:id="@+id/imgDropDownMenuIcon"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:clickable="false"
-                        android:layout_width="10pt"
+                        android:layout_marginEnd="5pt"
+                        android:layout_gravity="center|end"
+                        android:gravity="center|end"
+                        android:layout_marginBottom="3pt"
+                         android:layout_width="10pt"
                         android:layout_height="10pt"
-                        android:layout_margin="@dimen/fab_margin"
-                        />
+                         android:layout_marginRight="5pt" />
+
 
 
 
                     <ImageView
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:layout_marginTop="10pt"
+                        android:layout_marginEnd="5pt"
+                        android:layout_gravity="center|end"
+                        android:gravity="center|end"
+                         android:layout_marginTop="10pt"
                         android:id="@+id/bin"
                         android:layout_width="10pt"
                         android:layout_height="10pt"
-                         app:srcCompat="@drawable/ic_rubbish_bin" />
+                         app:srcCompat="@drawable/ic_rubbish_bin"
+                        android:layout_marginRight="5pt" />
 
                 </LinearLayout>
 
@@ -99,7 +106,7 @@
             android:layout_marginEnd="1pt"
             android:id="@+id/colortext"
             android:layout_marginTop="15pt"
-            android:layout_marginBottom="13pt"
+            android:layout_marginBottom="15pt"
             android:background="@color/colorAccent"
             android:layout_width="1pt"
             android:layout_height="match_parent"
