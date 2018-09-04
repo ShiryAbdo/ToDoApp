@@ -23,17 +23,15 @@
             android:name=".activities.NavActivity"
             android:label="@string/title_activity_nav"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activities.LogINActivity">
 
-        </activity>
-        <activity
+         <activity
             android:name=".activities.BasActivity"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
 
         <activity
-            android:name=".activities.LoginActivity"
+            android:name=".activities.LogUserInActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
